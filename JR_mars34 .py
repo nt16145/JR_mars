@@ -9,7 +9,7 @@ path = 'C:/Users/nt16145/Documents/JR_mars/chromedriver_win32/chromedriver.exe'
 driver = webdriver.Chrome(executable_path=path)
 #指定URLのページを開く
 driver.get('http://r113.sakura.ne.jp/p/ticket-sim/mars/index.html')
-path = 'C:/Users/nt16145/Documents/JR_mars/mars2.txt'
+path = 'C:/Users/nt16145/Documents/JR_mars/mars34.txt'
 file = open(path)
 text = file.readlines()
 
@@ -62,6 +62,7 @@ driver.find_element_by_id('stationInput0').clear()
 driver.find_element_by_id('stationInput0').send_keys(text_split[0])
 driver.find_element_by_id('stationInput1').clear()
 driver.find_element_by_id('stationInput1').send_keys(text_split[2])
+Select(driver.find_element_by_name('keiyuSelect0')).select_by_value('tokaido')
 pattern = r'[+-]?[0-9]+[\.]?[0-9]*[eE]?[+-]?[0-9]*'
 distance_split = text[5].split()
 distance = re.findall(pattern,distance_split[1])

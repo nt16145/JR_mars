@@ -9,7 +9,7 @@ path = 'C:/Users/nt16145/Documents/JR_mars/chromedriver_win32/chromedriver.exe'
 driver = webdriver.Chrome(executable_path=path)
 #指定URLのページを開く
 driver.get('http://r113.sakura.ne.jp/p/ticket-sim/mars/index.html')
-path = 'C:/Users/nt16145/Documents/JR_mars/mars2.txt'
+path = 'C:/Users/nt16145/Documents/JR_mars/mars156.txt'
 file = open(path)
 text = file.readlines()
 
@@ -19,7 +19,7 @@ text_split = text[1].split()
 
 # print(text_split[0])
 Select(driver.find_element_by_name('typeSelect')).select_by_value('type-joshaken')
-if text[3] in '新幹線':
+if '新幹線' in text[3]:
     Select(driver.find_element_by_name('shinkansenMarkSelect')).select_by_value('shinkansen-mark')
 else:
     Select(driver.find_element_by_name('shinkansenMarkSelect')).select_by_value('null')
@@ -29,7 +29,7 @@ driver.find_element_by_id('kanzaiRouteExistCheckbox').click()
 # date = driver.find_element_by_id('yukoKigenDateInput1').text
 date = datetime.date.today().day
 pattern = r'([0-9])'
-expiration =  re.findall(pattern,text[10])
+expiration =  re.findall(pattern,text[11])
 print(text)
 print(expiration)
 date = int(date) + int(expiration[0]) - 1
@@ -54,7 +54,7 @@ driver.find_element_by_id('yukoKigenDateInput2').send_keys(month)
 driver.find_element_by_id('yukoKigenDateInput3').send_keys(date)
 driver.find_element_by_id('fareInput').clear()
 pattern = r'\D'
-fee_split = text[7].split()
+fee_split = text[8].split()
 fee =  re.sub(pattern,'',fee_split[2])
 # print(fee)
 driver.find_element_by_id('fareInput').send_keys(fee)
